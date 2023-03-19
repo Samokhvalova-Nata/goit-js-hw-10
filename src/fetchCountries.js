@@ -1,5 +1,4 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// Функція, яка робить HTTP-запит на ресурс і повертає проміс з масивом країн - результатом запиту
 
 function fetchCountries(countryName) {
     const url = `https://restcountries.com/v3.1/name/${countryName}?fields=name,capital,population,flags,languages`;
@@ -11,7 +10,9 @@ function fetchCountries(countryName) {
         } 
         return response.json();
     })
-        .then(console.log)
+        .then(countryArray => {
+            return countryArray;
+        })
     .catch(Notify.failure("Oops, there is no country with that name"));
 }
 
