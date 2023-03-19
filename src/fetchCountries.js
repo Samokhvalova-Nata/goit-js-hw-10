@@ -11,10 +11,7 @@ function fetchCountries(countryName) {
         } 
         return response.json();
     })
-        .then(countryArray => {
-            
-            return countryArray;
-        })
+        .then(console.log)
     .catch(Notify.failure("Oops, there is no country with that name"));
 }
 
