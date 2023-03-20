@@ -1,19 +1,14 @@
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+const BASE_URL = 'https://restcountries.com/v3.1';
 
 function fetchCountries(countryName) {
-    const url = `https://restcountries.com/v3.1/name/${countryName}?fields=name,capital,population,flags,languages`;
-
-    return fetch(url)
-    .then(response => {
-        if (!response.ok) {
-        throw new Error(response.statusText);
-        } 
-        return response.json();
-    })
-        .then(countryArray => {
-            return countryArray;
-        })
-    .catch(Notify.failure("Oops, there is no country with that name"));
+    return fetch(`${BASE_URL}/name/${countryName}?fields=name,capital,population,flags,languages`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+            return response.json();
+        }    
+);
 }
 
 export { fetchCountries };
