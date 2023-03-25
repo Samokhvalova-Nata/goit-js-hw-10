@@ -18,25 +18,25 @@ function handleSearch(evt) {
 
     if (searchQuery === '') {
         clearMarkup();
-    } else {
-        console.log("Send a request");
-
-        fetchCountries(searchQuery)
-            .then(data => {
-                clearMarkup();
-                chooseMarkup(data)
-            })
-            .catch(onFetchError);
     }
+
+    fetchCountries(searchQuery)
+        .then(data => {
+            clearMarkup();
+            chooseMarkup(data)
+        })
+        .catch(onFetchError);
+    
 };
 
 function chooseMarkup(data) {
     if (data.length >= 2 && data.length <= 10) {
         createCountryListMarkup(data);
     }
-    else if (data.length === 1) {
+    if (data.length === 1) {
         createCountryContainerMarkup(data);
-    } else  {
+    }
+    if (data.length > 10) {
         Notify.info("Too many matches found. Please enter a more specific name.")
     };
 }
